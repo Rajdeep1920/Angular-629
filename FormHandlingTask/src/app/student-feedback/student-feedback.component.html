@@ -1,0 +1,84 @@
+
+<h1>Built-in pipes</h1>
+
+<h2>uppercase</h2>
+{{"manali"| uppercase}}
+
+<h2>lowercase</h2>
+
+{{"MANALI" | lowercase}}
+
+<h2>currency</h2>
+{{number | currency:"INR"}}
+
+<h2>decimal</h2>
+{{num | number:"1.1-3"}}
+
+<h2>Percentage</h2>
+{{0.25 | percent}}
+
+<h2>json</h2>
+{{student | json}}
+
+<h2>date</h2>
+<input type="date" name="birthdate" [(ngModel)]="birthDate">
+<h3>{{birthDate | date:"dd/mm/yyyy"}}</h3>
+
+<h2>i18nSelect</h2>
+{{gender | i18nSelect:genderMapping}}
+
+
+
+
+
+
+
+
+
+<h1>Student Feedback Form</h1>
+
+<form (ngSubmit)="submitForm()" class="feedback-form">
+
+  <div class="form-group">
+    <label for="stud_name">Student Name:</label>
+    <input type="text" name="stud_name" [(ngModel)]="stud_name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="batch_number">Batch Number:</label>
+    <input type="text" name="batch_number" [(ngModel)]="batch_number" required>
+  </div>
+
+  <div class="form-group">
+    <label for="feedback">Feedback:</label>
+    <textarea name="feedback" [(ngModel)]="feedback" required>Type Feedback</textarea>
+  </div>
+
+  <button type="submit" class="submit-btn">Submit Feedback</button>
+
+</form>
+
+<!-- Feedback Table -->
+<div class="feedback-table" *ngIf="showTable">
+  <h2>Submitted Feedback</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Batch Number</th>
+        <th>Feedback</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let fb of feedbackList; let i = index">
+        <td>{{ fb.stud_name }}</td>
+        <td>{{ fb.batch_number }}</td>
+        <td>{{ fb.feedback }}</td>
+        <td>
+          <button (click)="deleteFeedback(i)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
